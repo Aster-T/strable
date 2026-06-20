@@ -1,0 +1,85 @@
+==============================================================================
+TabPFN bad-case analysis  —  164 datasets, 9 flagged bad
+==============================================================================
+
+### REGRESSION  (118 datasets, quality = R^2)
+benchmark dataset                                q_med   q@0.5   slope bad
+strable  corporate-procurement-contract-awards   0.113   0.119   0.224   <-- BAD (=nan)
+strable  financial-intermediary-funds-cash-transfers   0.270   0.302   0.106   <-- BAD (=nan)
+carte    wine_dot_com_ratings                   0.285   0.293   0.076   <-- BAD (=nan)
+strable  mlr-summary-reports                    0.320   0.320   0.310  (=nan)
+strable  pol-terminal                           0.355   0.355   0.269  (=nan)
+strable  miga-issued-projects                   0.388   0.388   0.378  (=nan)
+strable  industry-payments-entity               0.401   0.546   0.147  (=nan)
+carte    us_accidents_counts                    0.401   0.406   0.115  (=nan)
+strable  broadband-availability                 0.409   0.409   0.166  (=nan)
+strable  historic-perimeters-wildfires          0.423   0.461   0.073  (=nan)
+strable  media-ranking_wide                     0.433   0.442   0.122  (=nan)
+strable  ifc-advisory-services-projects         0.433   0.442   0.201  (=nan)
+
+  Spearman corr(structural feature, quality_median):
+    frac_highcard_cols       -0.384
+    mean_card_ratio          -0.338
+    max_card_ratio           -0.160
+    target_card              -0.112
+    n_numeric_cols           +0.071
+    n_rows                   +0.077
+    frac_missing             +0.098
+    frac_datetime_cols       +0.136
+
+  Bad vs good group means (features that differ most):
+    n_rows                   bad=8006.667  good=18474.243
+    target_card              bad=2492.667  good=1781.113
+    n_features               bad=8.333  good=18.809
+    n_object_cols            bad=7.000  good=13.626
+    mean_str_chars           bad=21.309  good=27.821
+    n_numeric_cols           bad=1.333  good=5.183
+
+### CLASSIFICATION  (46 datasets, quality = AUROC, + acc/bacc)
+benchmark dataset                                q_med    acc   bacc   q@0.5   slope bad
+strable  osha-accidents                         0.600  0.636  0.519   0.610   0.076   <-- BAD (=osha)
+strable  ramen-ratings                          0.672  0.446  0.243   0.672   0.085  (=ramen_ratings)
+strable  hypertension-control-wide              0.682  0.689  0.570   0.715   0.038   <-- BAD (=nan)
+strable  lending-club-loan                      0.708  0.852  0.505   0.698   0.014   <-- BAD (=nan)
+strable  yelp_business                          0.723  0.302  0.239   0.731  -0.005  (=yelp)
+strable  chocolate-bar-ratings                  0.735  0.405  0.393   0.736   0.074  (=chocolate)
+strable  tobacco-problem                        0.744  0.590  0.591   0.753   0.024  (=nan)
+strable  food-event                             0.744  0.550  0.547   0.739   0.026  (=nan)
+carte    ramen_ratings                          0.745  0.678  0.673   0.745   0.189  (=ramen_ratings)
+carte    zomato                                 0.764  0.695  0.694   0.761  -0.012  (=nan)
+carte    roger_ebert                            0.777  0.704  0.704   0.780   0.044  (=nan)
+carte    yelp                                   0.812  0.734  0.733   0.812  -0.009  (=yelp)
+
+  Spearman corr(structural feature, quality_median):
+    max_card_ratio           -0.144
+    frac_highcard_cols       -0.023
+    n_numeric_cols           -0.022
+    target_card              -0.010
+    n_features               +0.103
+    target_imbalance         +0.153
+    frac_freetext_cols       +0.172
+    frac_missing             +0.185
+
+  Bad vs good group means (features that differ most):
+    n_rows                   bad=11328.333  good=22638.850
+    mean_str_chars           bad=62.856  good=41.730
+    n_features               bad=29.000  good=14.600
+    n_numeric_cols           bad=11.500  good=2.950
+    n_object_cols            bad=17.500  good=11.650
+    mean_str_tokens          bad=9.551  good=4.939
+
+### CLASSIFICATION — metric divergence (acc inflated by class imbalance?)
+  acc_gap = acc - balanced_acc  (high => model rides the majority class)
+benchmark dataset                               auroc    acc   bacc  acc_gap  imbal
+strable  lending-club-loan                     0.708  0.852  0.505    0.347  0.856  <-- majority-class crutch
+strable  historical-volcanic-locations         0.888  0.736  0.397    0.339  0.692  <-- majority-class crutch
+strable  michelin-ratings                      0.823  0.696  0.366    0.330  0.613  <-- majority-class crutch
+strable  financial-product-complaint           0.888  0.827  0.543    0.283  0.522  <-- majority-class crutch
+strable  mobile-home-parks                     0.882  0.791  0.541    0.251  0.704  <-- majority-class crutch
+strable  rasff_window                          0.939  0.771  0.524    0.247  0.537
+strable  ramen-ratings                         0.672  0.446  0.243    0.202  0.382
+strable  food-enforcement                      0.846  0.726  0.527    0.199  0.513
+strable  cohort-default-rate                   0.882  0.870  0.693    0.177  0.825
+strable  paediatric-investigation-plan         0.949  0.841  0.671    0.170  0.408
+strable  drug-shortages                        0.853  0.765  0.629    0.136  0.647
+strable  hypertension-control-wide             0.682  0.689  0.570    0.120  0.668

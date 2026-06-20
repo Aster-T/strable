@@ -1,0 +1,50 @@
+{
+  "benchmark": "ttb",
+  "note": "TextTabBench 'paper_datasets' that are NOT already present in STRABLE. The other 7 TTB paper_datasets (beer, calif_houses, wine, mercari, sf_permits, kickstarter, osha_accidents) plus complaints are the same source files STRABLE already ships, and are linked via bench_config.OVERLAP_GROUPS instead of re-downloaded. Targets/preprocessing are a faithful reconstruction of the TTB notebooks (github.com/mrazmartin/TextTabBench); leakage columns are dropped.",
+  "datasets": [
+    {
+      "name": "job_frauds",
+      "file": "raw/job_frauds/fake_job_postings.csv",
+      "target": "fraudulent",
+      "task": "binary-classification",
+      "read": "csv",
+      "drop_cols": ["job_id"]
+    },
+    {
+      "name": "spotify_genre",
+      "file": "raw/spotify_genre/dataset.csv",
+      "target": "track_genre",
+      "task": "multiclass-classification",
+      "read": "csv",
+      "filter_col": "track_genre",
+      "filter_values": ["pop", "rock", "hip-hop", "jazz", "classical", "metal", "electronic", "indie", "r-n-b", "country"],
+      "drop_cols": ["Unnamed: 0", "track_id"]
+    },
+    {
+      "name": "hs_cards",
+      "file": "raw/hs_cards/cards_flat.csv",
+      "target": "rarity",
+      "task": "multiclass-classification",
+      "read": "csv",
+      "drop_cols": ["id", "dust"]
+    },
+    {
+      "name": "airbnb",
+      "file": "raw/airbnb/listings.csv",
+      "target": "price",
+      "task": "regression",
+      "read": "csv",
+      "clean_target": "currency",
+      "drop_cols": ["id", "listing_url", "scrape_id", "thumbnail_url", "medium_url", "picture_url", "xl_picture_url", "host_id", "host_url", "host_thumbnail_url", "host_picture_url", "weekly_price", "monthly_price", "security_deposit", "cleaning_fee"]
+    },
+    {
+      "name": "laptops",
+      "file": "raw/laptops/complete laptop data0.csv",
+      "target": "Price",
+      "task": "regression",
+      "read": "csv",
+      "clean_target": "currency",
+      "drop_cols": ["Unnamed: 0", "link"]
+    }
+  ]
+}

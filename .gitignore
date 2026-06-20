@@ -94,3 +94,16 @@ Desktop.ini
 *.pyc
 __cache__/
 
+
+# === TabPFN multi-benchmark experiment (added for fork) ===
+# Large datasets — reproducible via the download scripts, never committed.
+/data/data_processed/
+/data/data_processed_*/
+/data/CARTE_datasets/
+/data/TTB_datasets/raw/
+/data/data_raw/
+/data/llm_embeding/
+# Results — commit only the small summaries (force-added), not the 1 GB per_row.
+/results/
+# Local secrets — TabPFN tokens, never committed.
+scripts/test/tokens.local

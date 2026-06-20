@@ -1,0 +1,6 @@
+# Copy this file to `tokens.local` and put your real TabPFN cloud tokens below,
+# ONE PER LINE. `tokens.local` is gitignored so your tokens never get committed.
+# Alternatively, set the TABPFN_TOKENS env var (comma-separated) instead.
+#
+# tabpfn_sk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+# tabpfn_sk_yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
