@@ -1,0 +1,22 @@
+# Dependencies for the TabPFN multi-benchmark harness (scripts/test/).
+# This is the LIGHT set — the cloud client + sklearn/pandas only. It does NOT
+# need the heavy local-model packages in the repo's requirements-full.txt
+# (xgboost, catboost, local tabpfn, etc.) because the harness calls TabPFN's
+# cloud API via tabpfn-client.
+#
+#   uv pip install -r scripts/test/requirements-tabpfn.txt
+
+tabpfn-client==0.3.2     # TabPFN cloud API client (the runner's model backend)
+scikit-learn==1.9.0      # train_test_split + metrics (R2/AUROC/acc/balanced-acc)
+pandas==2.3.3
+numpy==2.4.6
+pyarrow==23.0.1          # read data.parquet (STRABLE + CARTE)
+
+# --- data acquisition (datasets are gitignored; re-download on a new machine) ---
+huggingface-hub==1.20.1  # STRABLE + CARTE snapshot_download
+kaggle==2.2.2            # TextTabBench raw files
+
+# --- only needed if this machine routes through a SOCKS proxy (e.g. Clash) ---
+# httpx (pulled in by huggingface-hub) needs socksio to use a socks5:// proxy,
+# otherwise downloads fail with "Using SOCKS proxy, but 'socksio' not installed".
+socksio==1.0.0
